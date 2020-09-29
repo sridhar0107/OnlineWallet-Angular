@@ -1,0 +1,101 @@
+<div align="center">
+    <input  type="button" value="Home" routerLink="/" class="btn btn-primary">
+</div>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div class="container col-md-6">
+
+        <h3></h3>
+
+    <form #userForm="ngForm" (ngSubmit)='onSubmit(userForm.value)'>
+
+        <div class="form-group">
+
+            <label>UserId: </label>
+
+            <input required  pattern=".{5,}"  type="number"  #userId='ngModel' name="userId" ngModel class="form-control">
+
+            
+            <div *ngIf='userId.errors && userId.touched' class="alert alert-danger">
+
+                <div [hidden]='!userId.errors.required'> Provide User Id </div>
+                <div *ngIf='userId.errors.pattern'>UserId should contain atleast 5 digits </div>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label>User Name: </label>
+
+            <input required minlength="5" type="String"  #userName='ngModel' name="userName" ngModel class="form-control">
+
+            
+            <div *ngIf='userName.errors && userName.touched' class="alert alert-danger">
+
+                <div [hidden]='!userName.errors.required'> Provide User Name </div>
+                <div *ngIf='userName.errors.pattern'>UserName should contain atleast 5 characters </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Password: </label>
+
+            <input required minlength="6"  pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  type="password" #password='ngModel' name="password" ngModel class="form-control">
+
+            <div *ngIf='password.errors
+                        && password.touched' class="alert alert-danger">
+
+                <div [hidden]='!password.errors.required'>
+
+                    Provide Password
+
+                </div>
+
+                <div *ngIf='password.errors.pattern'>Must contain at least one number, one uppercase, one special character and lowercase letter, and at least 8 or more characters </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Phone Number: </label>
+
+            <input required length="10" type="tel" pattern="[6789][0-9]{9}" #phoneNumber='ngModel' name="phoneNumber" ngModel class="form-control">
+
+            <div *ngIf='phoneNumber.errors && phoneNumber.touched' class="alert alert-danger">
+
+                <div [hidden]='!phoneNumber.errors.required'> Provide Employee Phone Number </div>
+
+                <div *ngIf='phoneNumber.errors.pattern'>Phone number is Incorrect</div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label>Login Name: </label>
+
+            <input required minlength="5" type="String"  #loginName='ngModel' name="loginName" ngModel class="form-control">
+
+            
+            <div *ngIf='loginName.errors && loginName.touched' class="alert alert-danger">
+
+                <div [hidden]='!loginName.errors.required'> Provide Login Name </div>
+                <div *ngIf='loginName.errors.pattern'>UserName should contain atleast 5 characters </div>
+            </div>
+        </div>
+
+
+        
+        <input [disabled]="userForm.invalid" type="submit" value="Add User" class="btn btn-primary">
+
+    </form>
+    </div>
+    <div >
+        <h2></h2>
+    </div> 
